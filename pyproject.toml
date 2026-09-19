@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netease-cdp"
+version = "0.1.0"
+description = "通过 Chrome DevTools Protocol 驱动网易云音乐桌面客户端（Drive the NetEase CloudMusic desktop client over CDP）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "AGPL-3.0-or-later" }
+keywords = [
+    "netease",
+    "cloudmusic",
+    "netease-cloud-music",
+    "cdp",
+    "chrome-devtools-protocol",
+    "electron",
+    "automation",
+    "desktop",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Players",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# 只依赖一个 WebSocket 客户端；其余全是标准库。
+# websockets>=12 起提供 websockets.sync.client，本库对更老的版本也有回退分支。
+dependencies = ["websockets>=12.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/canyueY/netease-cdp"
+Repository = "https://github.com/canyueY/netease-cdp"
+Issues = "https://github.com/canyueY/netease-cdp/issues"
+Changelog = "https://github.com/canyueY/netease-cdp/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["netease_cdp*"]
+
+[tool.setuptools.package-data]
+netease_cdp = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]
