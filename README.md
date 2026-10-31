@@ -189,3 +189,8 @@ uv run --python 3.10 --extra dev python -m pytest tests -q
 测试**不需要**真的开网易云：`tests/conftest.py` 里有一个真实的假 CDP 服务器
 （真 HTTP 端点 + 真 WebSocket 服务端），所以 JSON 组包、`id` 匹配、事件插播
 跳过、超时这些容易写错的地方都真的被执行到了。
+
+
+---
+
+> **为什么还要开发 Mnemosyne？** [阅读全文 →](WHY_MNEMOSYNE.md)
